@@ -1,0 +1,38 @@
+# Requisições de teste (extensão "REST Client" do VS Code: clique em "Send Request")
+@api = http://localhost:3000
+
+### Listar produtos
+GET {{api}}/produtos
+
+### Buscar um produto
+GET {{api}}/produtos/1
+
+### Criar produto
+POST {{api}}/produtos
+Content-Type: application/json
+
+{ "nome": "Headset USB", "preco": 199.90, "estoque": 10, "estoque_minimo": 4 }
+
+### Atualizar produto (nome, preco, estoque_minimo)
+PUT {{api}}/produtos/1
+Content-Type: application/json
+
+{ "estoque_minimo": 5 }
+
+### VENDA (saída de estoque)
+POST {{api}}/produtos/1/movimentar
+Content-Type: application/json
+
+{ "tipo": "SAIDA", "quantidade": 1 }
+
+### ENTRADA de estoque
+POST {{api}}/produtos/1/movimentar
+Content-Type: application/json
+
+{ "tipo": "ENTRADA", "quantidade": 10 }
+
+### Saída maior que o saldo (deve dar 422)
+POST {{api}}/produtos/1/movimentar
+Content-Type: application/json
+
+{ "tipo": "SAIDA", "quantidade": 9999 }

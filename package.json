@@ -1,0 +1,19 @@
+{
+  "name": "atividade-tec-int-sis",
+  "version": "1.0.0",
+  "description": "API de estoque (Express + Supabase) com eventos via RabbitMQ e 3 workers consumidores",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "worker:auditoria": "node workers/auditoria.js",
+    "worker:compras": "node workers/compras.js",
+    "worker:vitrine": "node workers/vitrine.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "amqplib": "^0.10.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
